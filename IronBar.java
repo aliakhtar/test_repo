@@ -1,33 +1,42 @@
-package test;
+package drinks.bars.bar;
 
 public class Bar
 {
-    private int width;
-    private int height;
+    private final Set<String> customers;
+    private final Map<String, Double> drinks;
 
-    public Bar(int width, int height)
+    public Bar()
     {
-        this.width = width;
-        this.height = height;
+        customers = new HashSet<>();
+        drinks = new HashMap<>();
     }
 
-    public int getWidth()
+    public void addCustomer(String customerName)
     {
-        return width;
+        customers.add(customerName);
     }
 
-    public void setWidth(int width)
+    public boolean hasCustomer(String name)
     {
-        this.width = width;
+        return customers.contains(name);
     }
 
-    public int getHeight()
+    public void orderDrink(String name, double price)
     {
-        return height;
+        if (! drinks.containsKey(name))
+            throw new Exception();
+
+        if (drinks.get(name) != price)
+            throw new Exception();
     }
 
-    public void setHeight(int height)
+    public boolean hasDrink(String drinkName)
     {
-        this.height = height;
+        return drinks.containsKey(drinkName);
+    }
+
+    public double getDrinkPrice(String drinkName)
+    {
+        return drinks.get(drinkName);
     }
 }
